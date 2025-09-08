@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <ProjectReference Include="..\Domain\EnterpriseBoilerplate.Domain.csproj" />
     <ProjectReference Include="..\Application\EnterpriseBoilerplate.Application.csproj" />
@@ -27,3 +27,5 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 </Project>
+
+

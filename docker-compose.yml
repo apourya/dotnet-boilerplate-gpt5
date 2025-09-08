@@ -1,4 +1,5 @@
 ﻿version: "3.9"
+
 services:
   postgres:
     image: postgres:16
@@ -49,10 +50,15 @@ services:
 
   api:
     build:
-      context: ./src/EnterpriseBoilerplate.Api
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./src/Api/Dockerfile   # مسیر جدید
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      # کلید JWT حداقل 32 بایت (اینجا نمونه hex طول 64 گذاشتیم - حتماً برای خودت عوضش کن)
+      Auth__Jwt__Key: "2f1b9a0c5e0aa1d9fcb8e7a2e3f0b1c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f901"
+      # اختیاری: Issuer/Audience
+      # Auth__Jwt__Issuer: "EnterpriseBoilerplate"
+      # Auth__Jwt__Audience: "EnterpriseBoilerplate.Clients"
     depends_on:
       - postgres
       - redis
@@ -64,8 +70,8 @@ services:
 
   worker:
     build:
-      context: ./src/EnterpriseBoilerplate.Worker
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./src/Worker/Dockerfile   # مسیر جدید
     environment:
       DOTNET_ENVIRONMENT: Development
     depends_on:
